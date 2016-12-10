@@ -26,6 +26,9 @@
     <Compile Include="ListNode.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Solution.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TreeNode.py">
       <SubType>Code</SubType>
     </Compile>

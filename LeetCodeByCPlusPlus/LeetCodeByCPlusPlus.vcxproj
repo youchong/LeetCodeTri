@@ -143,10 +143,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ListNode.h" />
+    <ClInclude Include="Solution.h" />
     <ClInclude Include="TreeNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ListNode.cpp" />
+    <ClCompile Include="Solution.cpp" />
     <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
