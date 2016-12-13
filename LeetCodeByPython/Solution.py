@@ -19,9 +19,34 @@ class Solution(object):
         curr = result
         while l1 != None or l2 != None or cf != 0:
             sum = (0 if l1 == None else l1.val) + (0 if l2 == None else l2.val) + cf
-            curr.next=ListNode(sum%10)
-            curr=curr.next
-            cf=sum/10
-            l1=None if l1==None else l1.next
-            l2=None if l2==None else l2.next
+            curr.next = ListNode(sum % 10)
+            curr = curr.next
+            cf = sum / 10
+            l1 = None if l1 == None else l1.next
+            l2 = None if l2 == None else l2.next
         return result.next
+
+    def lengthOfLongestSubstring(self, s):
+        if len(s) < 2:
+            return len(s)
+        i = 0
+        j = 1
+        maxLength = 1
+        map = {}
+        map[s[i]] = i
+
+        while j < len(s):
+            if s[j] in map:
+                if map[s[j]] >= i:
+                    length = j - i
+                    if length > maxLength:
+                        maxLength = length
+                    i = map[s[j]] + 1
+            map[s[j]] = j
+            j = j + 1
+
+        length = j - i
+        if length > maxLength:
+            maxLength = length
+
+        return maxLength

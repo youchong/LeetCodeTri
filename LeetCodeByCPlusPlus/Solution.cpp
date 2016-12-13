@@ -1,5 +1,5 @@
 #include "Solution.h"
-#include<unordered_map>
+
 
 
 Solution::Solution()
@@ -31,7 +31,7 @@ vector<int> Solution::twoSum(vector<int>& nums, int target)
 	return result;
 }
 
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2)
 {
 	if (l1 == nullptr)
 		return l2;
@@ -53,4 +53,37 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
 	}
 
 	return result->next;
+}
+
+int Solution::lengthOfLongestSubstring(string s)
+{
+	if (s.length() < 2)
+		return s.length();
+
+	int i = 0, j = 1, maxLength = 1;
+	unordered_map<char, int> umap;
+	umap[s[i]] = i;
+
+	while (j < s.length())
+	{
+		if (umap.find(s[j]) != umap.end())
+		{
+			if (umap[s[j]] >= i)
+			{
+				int length = j - i;
+				if (length > maxLength)
+					maxLength = length;
+				i = umap[s[j]] + 1;
+			}
+		}
+
+		umap[s[j]] = j;
+		++j;
+	}
+
+	int len = j - i;
+	if (len > maxLength)
+		maxLength = len;
+
+	return maxLength;
 }

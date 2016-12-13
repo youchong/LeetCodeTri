@@ -55,5 +55,42 @@ namespace LeetCodeByCSharp
 
             return result.next;
         }
+
+        public int LengthOfLongestSubstring(string s)
+        {
+            if (s.Length < 2)
+                return s.Length;
+            int i = 0;
+            int j = 1;
+            int maxLength = 1;
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+            dic.Add(s[i], i);
+
+            while (j < s.Length)
+            {
+                if (dic.ContainsKey(s[j]))
+                {
+                    if (dic[s[j]] >= i)
+                    {
+                        int length = j - i;
+                        if (length > maxLength)
+                            maxLength = length;
+                        i = dic[s[j]] + 1;
+                    }
+                    dic[s[j]] = j;
+                }
+                else
+                {
+                    dic.Add(s[j], j);
+                }
+                ++j;
+            }
+
+            int len = j - i;
+            if (len > maxLength)
+                maxLength = len;
+
+            return maxLength;
+        }
     }
 }
