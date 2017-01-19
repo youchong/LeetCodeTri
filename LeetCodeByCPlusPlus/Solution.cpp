@@ -87,3 +87,33 @@ int Solution::lengthOfLongestSubstring(string s)
 
 	return maxLength;
 }
+
+string Solution::longestPalindrome(string s)
+{
+	if (s.empty() || s.size() < 2)
+		return s;
+	int max_left = 0, max_len = 1;
+	int s_len = s.size();
+	for (int start = 0; start < s_len - 1 && s_len - start>max_len / 2; )
+	{
+		int i = start;
+		int j = start;
+		while (j<s_len-1&&s[j]==s[j+1])
+		{
+			j++;
+		}
+		start = j + 1;
+		while (i > 0 && j < s_len - 1 && s[i - 1] == s[j + 1])
+		{
+			i--;
+			j++;
+		}
+		if (j - i + 1 > max_len)
+		{
+			max_len = j - i + 1;
+			max_left = i;
+		}
+	}
+
+	return s.substr(max_left, max_len);
+}

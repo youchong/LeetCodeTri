@@ -50,3 +50,24 @@ class Solution(object):
             maxLength = length
 
         return maxLength
+
+    def longestPalindrome(self, s):
+        if s == None or len(s) < 2:
+            return s
+        max_left = 0
+        max_len = 1
+        s_len = len(s)
+        start = 0
+        while start < s_len - 1 and s_len - start > max_len / 2:
+            i = start
+            j = start
+            while j + 1 < s_len and s[j] == s[j + 1]:
+                j+=1
+            start = j + 1
+            while i > 0 and j + 1 < s_len and s[i - 1] == s[j + 1]:
+                j+=1
+                i-=1
+            if j - i + 1 > max_len:
+                max_len = j - i + 1
+                max_left = i
+        return s[max_left:max_left + max_len]

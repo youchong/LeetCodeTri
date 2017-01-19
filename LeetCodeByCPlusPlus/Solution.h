@@ -12,5 +12,6 @@ public:
 	vector<int> twoSum(vector<int>& nums, int target);
 	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 	int lengthOfLongestSubstring(string s);
+	string longestPalindrome(string s);
 };
 

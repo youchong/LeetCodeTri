@@ -92,5 +92,33 @@ namespace LeetCodeByCSharp
 
             return maxLength;
         }
+
+        public string LongestPalindrome(string s)
+        {
+            if (s == null || s.Length < 2)
+                return s;
+            int maxLeft = 0, maxLen = 1;
+            int sLen = s.Length;
+            for (int start = 0; start < sLen - 1 && (sLen - start > maxLen / 2);)
+            {
+                int i = start;
+                int j = start;
+                while (j + 1 < sLen && s[j] == s[j + 1])
+                    j++;
+                start = j + 1;
+                while (i > 0 && j + 1 < sLen && s[i - 1] == s[j + 1])
+                {
+                    i--;
+                    j++;
+                }
+                if (j - i + 1 > maxLen)
+                {
+                    maxLeft = i;
+                    maxLen = j - i + 1;
+                }
+            }
+
+            return s.Substring(maxLeft, maxLen);
+        }
     }
 }
